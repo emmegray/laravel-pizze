@@ -17,7 +17,7 @@ class PizzaController extends Controller
     public function index()
     {
         $pizzas = Pizza::orderBy('id', 'desc')->get();
-        return view('admin.pizze.index', compact('pizzas'));
+            return view('admin.pizze.index', compact('pizza'));
     }
 
     /**
@@ -57,7 +57,11 @@ class PizzaController extends Controller
     public function show($id)
     {
         $pizza = Pizza::find($id);
-        return view('admin.pizze.show', compact('pizza'));
+        if ($pizza) {
+
+            return view('admin.pizze.show', compact('pizza'));
+        }
+        abort(404, 'Pizza non trovata');
     }
 
     /**
@@ -69,7 +73,11 @@ class PizzaController extends Controller
     public function edit($id)
     {
         $pizza = Pizza::find($id);
-        return view('admin.pizze.edit', compact('pizza'));
+        if ($pizza) {
+
+            return view('admin.pizze.edit', compact('pizza'));
+        }
+        abort(404, 'Pizza non trovata');
     }
 
     /**
