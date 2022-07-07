@@ -28,7 +28,9 @@ class PizzaTableSeeder extends Seeder
             }
 
             $new_pizza->vegetariano = $pizza['vegetariana'];
+            $new_pizza->slug = Pizza::generateSlug($pizza['nome']);
 
+            // dump($new_pizza);
             $new_pizza->save();
         }
 

@@ -19,6 +19,7 @@ class CreatePizzasTable extends Migration
             $table->decimal('prezzo', 4, 1);
             $table->string('ingredienti');
             $table->boolean('vegetariano');
+            $table->string('slug');
             $table->timestamps();
         });
     }
