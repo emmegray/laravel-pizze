@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <h1 class="mt-3 mb-4">Crea nuovo Post</h1>
+        <h1 class="mt-3 mb-4">Crea una nuova Pizza:</h1>
         <p style="font-size: 18px">Compila i dati e fai click su <span
                 style="color: blue; text-decoration: underline">invia</span> per creare un nuovo post nel database.</p>
         @if ($errors->any())
