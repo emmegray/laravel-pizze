@@ -29,8 +29,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="prezzo" class="form-label">Prezzo:</label>
-                    <input type="number" class="form-control @error('prezzo') is-invalid @enderror" name="prezzo" id="prezzo" cols="30"
-                        rows="10" placeholder="prezzo">
+                    <input type="number" class="form-control @error('prezzo') is-invalid @enderror" name="prezzo"
+                        id="prezzo" cols="30" rows="10" placeholder="prezzo">
                     {{ old('prezzo') }}
 
                     @error('prezzo')
