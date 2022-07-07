@@ -17,7 +17,7 @@ class PizzaController extends Controller
     public function index()
     {
         $pizzas = Pizza::orderBy('id', 'desc')->get();
-            return view('admin.pizze.index', compact('pizza'));
+            return view('admin.pizze.index', compact('pizzas'));
     }
 
     /**
