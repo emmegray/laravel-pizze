@@ -19,11 +19,11 @@
                         <td>
                             {{-- <a class="btn btn-success" href="{{ route('admin.posts.show',$post)}}">Show</a> --}}
                             <a class="btn btn-success" href="{{ route('admin.pizza.show',$pizza)}}">Show</a>
-                            <a class="btn btn-primary" href="">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('admin.pizza.edit',$pizza)}}">Edit</a>
                         <form class="d-inline"
                             method="POST"
                             onsubmit="return confirm('Confirm the action? Oance deleted it can\'t be restored')"
-                            action="">
+                            action="{{ route('admin.pizza.destroy', $pizza)}}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">DELETE</button>

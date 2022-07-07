@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Pizza;
+use App\Http\Requests\PizzaRequest;
 
 class PizzaController extends Controller
 {
@@ -35,9 +36,16 @@ class PizzaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PizzaRequest $request)
     {
-        //
+        $data = $request->all();
+        $new_pizza = new Pizza;
+        $data['slug'] = Pizza::generateSlug($data['nome']);
+        // dd($data['vegetariano']);
+        $new_pizza->fill($data);
+        $new_pizza->save();
+
+        return redirect()->route('admin.pizza.show', $new_pizza);
     }
 
     /**
@@ -60,7 +68,8 @@ class PizzaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pizza = Pizza::find($id);
+        return view('admin.pizze.edit', compact('pizza'));
     }
 
     /**
@@ -70,9 +79,14 @@ class PizzaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PizzaRequest $request, Pizza $pizza)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Pizza::generateSlug($data['nome']);
+        // dd($data['vegetariano']);
+        $pizza->update($data);
+
+        return redirect()->route('admin.pizza.show', $pizza);
     }
 
     /**
@@ -81,8 +95,10 @@ class PizzaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pizza $pizza)
     {
-        //
+        $pizza->delete();
+        return redirect()->route('admin.pizza.index')->with('message', 'Pizza $pizza->nome was deleted');
     }
+
 }

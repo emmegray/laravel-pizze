@@ -3,14 +3,19 @@
 <div class="container">
     {{-- @dd($post) --}}
     <h1>Nome: {{$pizza->nome}}</h1>
-    <p>Prezzo: {{$pizza->prezzo}}</p>
+    <p>Prezzo: {{$pizza->prezzo}} &euro;</p>
     <p>Ingredienti: {{$pizza->ingredienti}}</p>
-    {{-- <p>Vegetariano: {{$pizza->vegetariano}}</p> --}}
+    @if ($pizza->vegetariano)
+       <p>Vegetariano: Si</p>
+       @else
+       <p>Vegetariano: No</p>
+    @endif
+    {{-- <p>Vegetariano: {{$pizza->vegetariano}}</p>
     @if ($pizza->vegetariano)
         <p>Si</p>
         @else
         <p>No</p>
-    @endif
+    @endif --}}
     <a class="btn btn-success" href="{{route('admin.pizza.index', $pizza)}}">Torna indietro</a>
     {{-- <a class="btn btn-primary" href="{{ route('admin.pizza.edit',$post)}}">Edit</a> --}}
     {{-- <form class="d-inline"
