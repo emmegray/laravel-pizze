@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Pizza;
 
-class Pizza extends Controller
+class PizzaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,8 @@ class Pizza extends Controller
      */
     public function index()
     {
-        //
+        $pizzas = Pizza::orderBy('id', 'desc')->get();
+        return view('admin.pizze.index', compact('pizzas'));
     }
 
     /**
@@ -23,7 +26,7 @@ class Pizza extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pizze.create');
     }
 
     /**
@@ -45,7 +48,8 @@ class Pizza extends Controller
      */
     public function show($id)
     {
-        //
+        $pizza = Pizza::find($id);
+        return view('admin.pizze.show', compact('pizza'));
     }
 
     /**
